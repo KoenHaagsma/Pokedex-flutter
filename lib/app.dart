@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pokedex/features/pokemon/presentation/pokemon_detail_page.dart';
+import 'package:pokedex/features/pokemon/presentation/pokemons_page.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -11,7 +11,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.red,
       ),
-      home: const PokemonDetailPage(pokemonName: 'Pikachu'),
+      home: const PokemonsPage(),
     );
   }
 }

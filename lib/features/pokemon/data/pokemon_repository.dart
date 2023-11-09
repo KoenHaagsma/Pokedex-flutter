@@ -20,12 +20,24 @@ class HttpPokemonRepository {
         },
       );
 
+  Future<PokemonList> getPokemonList({
+    required int limit,
+    required int offset,
+  }) =>
+      _getData(
+        uri: api.getPokemonList(limit: limit, offset: offset),
+        builder: (data) {
+          return PokemonList.fromJson(data);
+        },
+      );
+
   Future<T> _getData<T>({
     required Uri uri,
     required T Function(dynamic data) builder,
   }) async {
     try {
       final response = await client.get(uri);
+      print(response.body);
       switch (response.statusCode) {
         case 200:
           final data = json.decode(response.body);

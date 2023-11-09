@@ -19,3 +19,17 @@ class PokemonData {
   final String name;
   final int weight;
 }
+
+class PokemonListData {
+  PokemonListData({
+    required this.pokemonList,
+  });
+
+  factory PokemonListData.from(PokemonList pokemonList) {
+    return PokemonListData(
+      pokemonList: pokemonList,
+    );
+  }
+
+  final PokemonList pokemonList;
+}

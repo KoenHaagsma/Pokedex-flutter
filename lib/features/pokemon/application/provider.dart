@@ -11,3 +11,12 @@ final pokemonProvider = FutureProvider.autoDispose<PokemonData>((ref) async {
       .getPokemonByName(pokemonName: pokemonName);
   return PokemonData.from(pokemon);
 });
+
+final pokemonListProvider = FutureProvider.autoDispose<PokemonListData>(
+  (ref) async {
+    final pokemonList = await ref
+        .watch(pokemonRepositoryProvider)
+        .getPokemonList(limit: 100, offset: 0);
+    return PokemonListData.from(pokemonList);
+  },
+);
