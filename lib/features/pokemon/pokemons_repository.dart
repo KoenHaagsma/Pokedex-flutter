@@ -36,7 +36,9 @@ class PokemonRepository {
         (pokemon) async {
           final String name = pokemon.name;
           final int weight = pokemon.weight;
+          final int height = pokemon.height;
           final int id = pokemon.id;
+          final List<Map<String, dynamic>> stats = pokemon.stats;
           final List<Map<String, dynamic>> types = pokemon.types;
 
           Response response = await _dio.get('pokemon-form/$id');
@@ -47,16 +49,30 @@ class PokemonRepository {
             return Type(name: name);
           }).toList();
 
+          final statList = stats.map((stat) {
+            final int baseStat = stat['base_stat'];
+            final int effort = stat['effort'];
+            final Map<String, dynamic> statMap = stat['stat'];
+            return Stat(
+              baseStat: baseStat,
+              effort: effort,
+              stat: statMap,
+            );
+          }).toList();
+
           return Pokemon(
             id: id,
             name: name,
             weight: weight,
+            height: height,
             imageUrl: imageUrl,
+            stats: statList,
             types: typeList,
           );
         },
       ),
     );
+    print(pokemonList);
     return pokemonList;
   }
 }
@@ -67,6 +83,8 @@ class Pokemon with _$Pokemon {
     required int id,
     required String name,
     required int weight,
+    required int height,
+    required List<Stat> stats,
     required String imageUrl,
     required List<Type> types,
   }) = _Pokemon;
@@ -81,6 +99,8 @@ class PokemonEntity with _$PokemonEntity {
     required int id,
     required String name,
     required int weight,
+    required int height,
+    required List<Map<String, dynamic>> stats,
     required List<Map<String, dynamic>> types,
   }) = _PokemonEntity;
 
@@ -97,6 +117,17 @@ class PokemonMinimal with _$PokemonMinimal {
 
   factory PokemonMinimal.fromJson(Map<String, dynamic> json) =>
       _$PokemonMinimalFromJson(json);
+}
+
+@freezed
+class Stat with _$Stat {
+  const factory Stat({
+    required int baseStat,
+    required int effort,
+    required Map<String, dynamic> stat,
+  }) = _Stat;
+
+  factory Stat.fromJson(Map<String, dynamic> json) => _$StatFromJson(json);
 }
 
 @freezed

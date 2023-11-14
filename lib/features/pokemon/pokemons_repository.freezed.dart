@@ -23,6 +23,8 @@ mixin _$Pokemon {
   int get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   int get weight => throw _privateConstructorUsedError;
+  int get height => throw _privateConstructorUsedError;
+  List<Stat> get stats => throw _privateConstructorUsedError;
   String get imageUrl => throw _privateConstructorUsedError;
   List<Type> get types => throw _privateConstructorUsedError;
 
@@ -37,7 +39,13 @@ abstract class $PokemonCopyWith<$Res> {
       _$PokemonCopyWithImpl<$Res, Pokemon>;
   @useResult
   $Res call(
-      {int id, String name, int weight, String imageUrl, List<Type> types});
+      {int id,
+      String name,
+      int weight,
+      int height,
+      List<Stat> stats,
+      String imageUrl,
+      List<Type> types});
 }
 
 /// @nodoc
@@ -56,6 +64,8 @@ class _$PokemonCopyWithImpl<$Res, $Val extends Pokemon>
     Object? id = null,
     Object? name = null,
     Object? weight = null,
+    Object? height = null,
+    Object? stats = null,
     Object? imageUrl = null,
     Object? types = null,
   }) {
@@ -72,6 +82,14 @@ class _$PokemonCopyWithImpl<$Res, $Val extends Pokemon>
           ? _value.weight
           : weight // ignore: cast_nullable_to_non_nullable
               as int,
+      height: null == height
+          ? _value.height
+          : height // ignore: cast_nullable_to_non_nullable
+              as int,
+      stats: null == stats
+          ? _value.stats
+          : stats // ignore: cast_nullable_to_non_nullable
+              as List<Stat>,
       imageUrl: null == imageUrl
           ? _value.imageUrl
           : imageUrl // ignore: cast_nullable_to_non_nullable
@@ -92,7 +110,13 @@ abstract class _$$PokemonImplCopyWith<$Res> implements $PokemonCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {int id, String name, int weight, String imageUrl, List<Type> types});
+      {int id,
+      String name,
+      int weight,
+      int height,
+      List<Stat> stats,
+      String imageUrl,
+      List<Type> types});
 }
 
 /// @nodoc
@@ -109,6 +133,8 @@ class __$$PokemonImplCopyWithImpl<$Res>
     Object? id = null,
     Object? name = null,
     Object? weight = null,
+    Object? height = null,
+    Object? stats = null,
     Object? imageUrl = null,
     Object? types = null,
   }) {
@@ -125,6 +151,14 @@ class __$$PokemonImplCopyWithImpl<$Res>
           ? _value.weight
           : weight // ignore: cast_nullable_to_non_nullable
               as int,
+      height: null == height
+          ? _value.height
+          : height // ignore: cast_nullable_to_non_nullable
+              as int,
+      stats: null == stats
+          ? _value._stats
+          : stats // ignore: cast_nullable_to_non_nullable
+              as List<Stat>,
       imageUrl: null == imageUrl
           ? _value.imageUrl
           : imageUrl // ignore: cast_nullable_to_non_nullable
@@ -144,9 +178,12 @@ class _$PokemonImpl implements _Pokemon {
       {required this.id,
       required this.name,
       required this.weight,
+      required this.height,
+      required final List<Stat> stats,
       required this.imageUrl,
       required final List<Type> types})
-      : _types = types;
+      : _stats = stats,
+        _types = types;
 
   factory _$PokemonImpl.fromJson(Map<String, dynamic> json) =>
       _$$PokemonImplFromJson(json);
@@ -157,6 +194,16 @@ class _$PokemonImpl implements _Pokemon {
   final String name;
   @override
   final int weight;
+  @override
+  final int height;
+  final List<Stat> _stats;
+  @override
+  List<Stat> get stats {
+    if (_stats is EqualUnmodifiableListView) return _stats;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_stats);
+  }
+
   @override
   final String imageUrl;
   final List<Type> _types;
@@ -169,7 +216,7 @@ class _$PokemonImpl implements _Pokemon {
 
   @override
   String toString() {
-    return 'Pokemon(id: $id, name: $name, weight: $weight, imageUrl: $imageUrl, types: $types)';
+    return 'Pokemon(id: $id, name: $name, weight: $weight, height: $height, stats: $stats, imageUrl: $imageUrl, types: $types)';
   }
 
   @override
@@ -180,6 +227,8 @@ class _$PokemonImpl implements _Pokemon {
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.weight, weight) || other.weight == weight) &&
+            (identical(other.height, height) || other.height == height) &&
+            const DeepCollectionEquality().equals(other._stats, _stats) &&
             (identical(other.imageUrl, imageUrl) ||
                 other.imageUrl == imageUrl) &&
             const DeepCollectionEquality().equals(other._types, _types));
@@ -187,7 +236,14 @@ class _$PokemonImpl implements _Pokemon {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, name, weight, imageUrl,
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      name,
+      weight,
+      height,
+      const DeepCollectionEquality().hash(_stats),
+      imageUrl,
       const DeepCollectionEquality().hash(_types));
 
   @JsonKey(ignore: true)
@@ -209,6 +265,8 @@ abstract class _Pokemon implements Pokemon {
       {required final int id,
       required final String name,
       required final int weight,
+      required final int height,
+      required final List<Stat> stats,
       required final String imageUrl,
       required final List<Type> types}) = _$PokemonImpl;
 
@@ -220,6 +278,10 @@ abstract class _Pokemon implements Pokemon {
   String get name;
   @override
   int get weight;
+  @override
+  int get height;
+  @override
+  List<Stat> get stats;
   @override
   String get imageUrl;
   @override
@@ -239,6 +301,8 @@ mixin _$PokemonEntity {
   int get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   int get weight => throw _privateConstructorUsedError;
+  int get height => throw _privateConstructorUsedError;
+  List<Map<String, dynamic>> get stats => throw _privateConstructorUsedError;
   List<Map<String, dynamic>> get types => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -254,7 +318,12 @@ abstract class $PokemonEntityCopyWith<$Res> {
       _$PokemonEntityCopyWithImpl<$Res, PokemonEntity>;
   @useResult
   $Res call(
-      {int id, String name, int weight, List<Map<String, dynamic>> types});
+      {int id,
+      String name,
+      int weight,
+      int height,
+      List<Map<String, dynamic>> stats,
+      List<Map<String, dynamic>> types});
 }
 
 /// @nodoc
@@ -273,6 +342,8 @@ class _$PokemonEntityCopyWithImpl<$Res, $Val extends PokemonEntity>
     Object? id = null,
     Object? name = null,
     Object? weight = null,
+    Object? height = null,
+    Object? stats = null,
     Object? types = null,
   }) {
     return _then(_value.copyWith(
@@ -288,6 +359,14 @@ class _$PokemonEntityCopyWithImpl<$Res, $Val extends PokemonEntity>
           ? _value.weight
           : weight // ignore: cast_nullable_to_non_nullable
               as int,
+      height: null == height
+          ? _value.height
+          : height // ignore: cast_nullable_to_non_nullable
+              as int,
+      stats: null == stats
+          ? _value.stats
+          : stats // ignore: cast_nullable_to_non_nullable
+              as List<Map<String, dynamic>>,
       types: null == types
           ? _value.types
           : types // ignore: cast_nullable_to_non_nullable
@@ -305,7 +384,12 @@ abstract class _$$PokemonEntityImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {int id, String name, int weight, List<Map<String, dynamic>> types});
+      {int id,
+      String name,
+      int weight,
+      int height,
+      List<Map<String, dynamic>> stats,
+      List<Map<String, dynamic>> types});
 }
 
 /// @nodoc
@@ -322,6 +406,8 @@ class __$$PokemonEntityImplCopyWithImpl<$Res>
     Object? id = null,
     Object? name = null,
     Object? weight = null,
+    Object? height = null,
+    Object? stats = null,
     Object? types = null,
   }) {
     return _then(_$PokemonEntityImpl(
@@ -337,6 +423,14 @@ class __$$PokemonEntityImplCopyWithImpl<$Res>
           ? _value.weight
           : weight // ignore: cast_nullable_to_non_nullable
               as int,
+      height: null == height
+          ? _value.height
+          : height // ignore: cast_nullable_to_non_nullable
+              as int,
+      stats: null == stats
+          ? _value._stats
+          : stats // ignore: cast_nullable_to_non_nullable
+              as List<Map<String, dynamic>>,
       types: null == types
           ? _value._types
           : types // ignore: cast_nullable_to_non_nullable
@@ -352,8 +446,11 @@ class _$PokemonEntityImpl implements _PokemonEntity {
       {required this.id,
       required this.name,
       required this.weight,
+      required this.height,
+      required final List<Map<String, dynamic>> stats,
       required final List<Map<String, dynamic>> types})
-      : _types = types;
+      : _stats = stats,
+        _types = types;
 
   factory _$PokemonEntityImpl.fromJson(Map<String, dynamic> json) =>
       _$$PokemonEntityImplFromJson(json);
@@ -364,6 +461,16 @@ class _$PokemonEntityImpl implements _PokemonEntity {
   final String name;
   @override
   final int weight;
+  @override
+  final int height;
+  final List<Map<String, dynamic>> _stats;
+  @override
+  List<Map<String, dynamic>> get stats {
+    if (_stats is EqualUnmodifiableListView) return _stats;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_stats);
+  }
+
   final List<Map<String, dynamic>> _types;
   @override
   List<Map<String, dynamic>> get types {
@@ -374,7 +481,7 @@ class _$PokemonEntityImpl implements _PokemonEntity {
 
   @override
   String toString() {
-    return 'PokemonEntity(id: $id, name: $name, weight: $weight, types: $types)';
+    return 'PokemonEntity(id: $id, name: $name, weight: $weight, height: $height, stats: $stats, types: $types)';
   }
 
   @override
@@ -385,12 +492,20 @@ class _$PokemonEntityImpl implements _PokemonEntity {
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.weight, weight) || other.weight == weight) &&
+            (identical(other.height, height) || other.height == height) &&
+            const DeepCollectionEquality().equals(other._stats, _stats) &&
             const DeepCollectionEquality().equals(other._types, _types));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, name, weight,
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      name,
+      weight,
+      height,
+      const DeepCollectionEquality().hash(_stats),
       const DeepCollectionEquality().hash(_types));
 
   @JsonKey(ignore: true)
@@ -412,6 +527,8 @@ abstract class _PokemonEntity implements PokemonEntity {
       {required final int id,
       required final String name,
       required final int weight,
+      required final int height,
+      required final List<Map<String, dynamic>> stats,
       required final List<Map<String, dynamic>> types}) = _$PokemonEntityImpl;
 
   factory _PokemonEntity.fromJson(Map<String, dynamic> json) =
@@ -423,6 +540,10 @@ abstract class _PokemonEntity implements PokemonEntity {
   String get name;
   @override
   int get weight;
+  @override
+  int get height;
+  @override
+  List<Map<String, dynamic>> get stats;
   @override
   List<Map<String, dynamic>> get types;
   @override
@@ -583,6 +704,183 @@ abstract class _PokemonMinimal implements PokemonMinimal {
   @override
   @JsonKey(ignore: true)
   _$$PokemonMinimalImplCopyWith<_$PokemonMinimalImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+Stat _$StatFromJson(Map<String, dynamic> json) {
+  return _Stat.fromJson(json);
+}
+
+/// @nodoc
+mixin _$Stat {
+  int get baseStat => throw _privateConstructorUsedError;
+  int get effort => throw _privateConstructorUsedError;
+  Map<String, dynamic> get stat => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $StatCopyWith<Stat> get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $StatCopyWith<$Res> {
+  factory $StatCopyWith(Stat value, $Res Function(Stat) then) =
+      _$StatCopyWithImpl<$Res, Stat>;
+  @useResult
+  $Res call({int baseStat, int effort, Map<String, dynamic> stat});
+}
+
+/// @nodoc
+class _$StatCopyWithImpl<$Res, $Val extends Stat>
+    implements $StatCopyWith<$Res> {
+  _$StatCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? baseStat = null,
+    Object? effort = null,
+    Object? stat = null,
+  }) {
+    return _then(_value.copyWith(
+      baseStat: null == baseStat
+          ? _value.baseStat
+          : baseStat // ignore: cast_nullable_to_non_nullable
+              as int,
+      effort: null == effort
+          ? _value.effort
+          : effort // ignore: cast_nullable_to_non_nullable
+              as int,
+      stat: null == stat
+          ? _value.stat
+          : stat // ignore: cast_nullable_to_non_nullable
+              as Map<String, dynamic>,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$StatImplCopyWith<$Res> implements $StatCopyWith<$Res> {
+  factory _$$StatImplCopyWith(
+          _$StatImpl value, $Res Function(_$StatImpl) then) =
+      __$$StatImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({int baseStat, int effort, Map<String, dynamic> stat});
+}
+
+/// @nodoc
+class __$$StatImplCopyWithImpl<$Res>
+    extends _$StatCopyWithImpl<$Res, _$StatImpl>
+    implements _$$StatImplCopyWith<$Res> {
+  __$$StatImplCopyWithImpl(_$StatImpl _value, $Res Function(_$StatImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? baseStat = null,
+    Object? effort = null,
+    Object? stat = null,
+  }) {
+    return _then(_$StatImpl(
+      baseStat: null == baseStat
+          ? _value.baseStat
+          : baseStat // ignore: cast_nullable_to_non_nullable
+              as int,
+      effort: null == effort
+          ? _value.effort
+          : effort // ignore: cast_nullable_to_non_nullable
+              as int,
+      stat: null == stat
+          ? _value._stat
+          : stat // ignore: cast_nullable_to_non_nullable
+              as Map<String, dynamic>,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$StatImpl implements _Stat {
+  const _$StatImpl(
+      {required this.baseStat,
+      required this.effort,
+      required final Map<String, dynamic> stat})
+      : _stat = stat;
+
+  factory _$StatImpl.fromJson(Map<String, dynamic> json) =>
+      _$$StatImplFromJson(json);
+
+  @override
+  final int baseStat;
+  @override
+  final int effort;
+  final Map<String, dynamic> _stat;
+  @override
+  Map<String, dynamic> get stat {
+    if (_stat is EqualUnmodifiableMapView) return _stat;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(_stat);
+  }
+
+  @override
+  String toString() {
+    return 'Stat(baseStat: $baseStat, effort: $effort, stat: $stat)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$StatImpl &&
+            (identical(other.baseStat, baseStat) ||
+                other.baseStat == baseStat) &&
+            (identical(other.effort, effort) || other.effort == effort) &&
+            const DeepCollectionEquality().equals(other._stat, _stat));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, baseStat, effort,
+      const DeepCollectionEquality().hash(_stat));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$StatImplCopyWith<_$StatImpl> get copyWith =>
+      __$$StatImplCopyWithImpl<_$StatImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$StatImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _Stat implements Stat {
+  const factory _Stat(
+      {required final int baseStat,
+      required final int effort,
+      required final Map<String, dynamic> stat}) = _$StatImpl;
+
+  factory _Stat.fromJson(Map<String, dynamic> json) = _$StatImpl.fromJson;
+
+  @override
+  int get baseStat;
+  @override
+  int get effort;
+  @override
+  Map<String, dynamic> get stat;
+  @override
+  @JsonKey(ignore: true)
+  _$$StatImplCopyWith<_$StatImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 

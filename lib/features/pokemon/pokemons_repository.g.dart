@@ -11,6 +11,10 @@ _$PokemonImpl _$$PokemonImplFromJson(Map<String, dynamic> json) =>
       id: json['id'] as int,
       name: json['name'] as String,
       weight: json['weight'] as int,
+      height: json['height'] as int,
+      stats: (json['stats'] as List<dynamic>)
+          .map((e) => Stat.fromJson(e as Map<String, dynamic>))
+          .toList(),
       imageUrl: json['imageUrl'] as String,
       types: (json['types'] as List<dynamic>)
           .map((e) => Type.fromJson(e as Map<String, dynamic>))
@@ -22,6 +26,8 @@ Map<String, dynamic> _$$PokemonImplToJson(_$PokemonImpl instance) =>
       'id': instance.id,
       'name': instance.name,
       'weight': instance.weight,
+      'height': instance.height,
+      'stats': instance.stats,
       'imageUrl': instance.imageUrl,
       'types': instance.types,
     };
@@ -31,6 +37,10 @@ _$PokemonEntityImpl _$$PokemonEntityImplFromJson(Map<String, dynamic> json) =>
       id: json['id'] as int,
       name: json['name'] as String,
       weight: json['weight'] as int,
+      height: json['height'] as int,
+      stats: (json['stats'] as List<dynamic>)
+          .map((e) => e as Map<String, dynamic>)
+          .toList(),
       types: (json['types'] as List<dynamic>)
           .map((e) => e as Map<String, dynamic>)
           .toList(),
@@ -41,6 +51,8 @@ Map<String, dynamic> _$$PokemonEntityImplToJson(_$PokemonEntityImpl instance) =>
       'id': instance.id,
       'name': instance.name,
       'weight': instance.weight,
+      'height': instance.height,
+      'stats': instance.stats,
       'types': instance.types,
     };
 
@@ -55,6 +67,19 @@ Map<String, dynamic> _$$PokemonMinimalImplToJson(
     <String, dynamic>{
       'name': instance.name,
       'url': instance.url,
+    };
+
+_$StatImpl _$$StatImplFromJson(Map<String, dynamic> json) => _$StatImpl(
+      baseStat: json['baseStat'] as int,
+      effort: json['effort'] as int,
+      stat: json['stat'] as Map<String, dynamic>,
+    );
+
+Map<String, dynamic> _$$StatImplToJson(_$StatImpl instance) =>
+    <String, dynamic>{
+      'baseStat': instance.baseStat,
+      'effort': instance.effort,
+      'stat': instance.stat,
     };
 
 _$TypeImpl _$$TypeImplFromJson(Map<String, dynamic> json) => _$TypeImpl(
